@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD with firestore</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style2.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <input type="text" id="myInput" placeholder="Search Product Category here" onkeyup="searchFun()">
+      <!-- <div id="myBtnContainer">
+        <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+        <button class="btn" onclick="filterSelection('laptop')"> Laptop</button>
+        <button class="btn" onclick="filterSelection('Mobiles')"> Mobiles</button>
+        <button class="btn" onclick="filterSelection('games')"> games</button>
+        <button class="btn" onclick="filterSelection('Desktops')"> Desktops</button>
+        <button class="btn" onclick="filterSelection('fruits')"> fruits</button>
+      </div>
+      
+      <div class="container">
+        <div class="filterDiv laptop">lenovo</div>
+        <div class="filterDiv Mobiles ">Pocof1</div>
+        <div class="filterDiv Desktops">HP</div>
+        <div class="filterDiv games">PS5</div>
+        <div class="filterDiv laptop laptop">Dell</div>
+        <div class="filterDiv Mobiles">VIVOV17pro</div>
+        <div class="filterDiv laptop">Asus</div>
+        <div class="filterDiv Desktops">DELL</div>
+        <div class="filterDiv fruits">Melon</div>
+        <div class="filterDiv fruits">Kiwi</div>
+        <div class="filterDiv fruits">Banana</div>
+        <div class="filterDiv fruits">Lemon</div>
+        <div class="filterDiv laptop">HP</div>
+      </div> -->
+
+      <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Category</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#All" onclick="category()">ALL</a>
+          <a href="home.html">Home</a>
+          <a href="#Mobiles">Mobiles</a>
+          <a href="#games">games</a>
+          <a href="#Desktops">Desktops</a>
+          <a href="#laptop">laptop</a>
+        </div>
+      </div>
+      
+
+      <h3>Products</h3>
+    </header>
+    <div class="table-wrapper">
+      <table class="table-users" id="myTable" >
+        <tr>
+          <th> Product ID</th>
+          <th>Product Name</th>
+          <th>category Name</th>
+          <th>category ID</th>
+          <!-- <th>Phone</th>
+          <th>Email</th> -->
+          <th>Action</th>
+        </tr>
+      </table>
+      <button class="btn btn-add">Add Products</button>
+    </div>
+    <!-- Add Modal -->
+    <div class="add-modal modal-wrapper">
+      <div class="modal">
+        <div class="modal-header"><h3>Add Your Review</h3></div>
+        <div class="modal-body">
+          <form class="form" autocomplete="off">
+            <input type="number" name="ProductID" id="product" placeholder="Product ID">
+            <input type="text" name="ProductName" placeholder="Product Name">
+            <input type="text" name="CategoryName" placeholder="Category Name">
+            <input type="number" name="CategoryID" placeholder="Category ID">
+            <!-- <input type="number" name="phone" placeholder="Phone">
+            <input type="file"  accept="image/*" name="image" id="file" style="display: none;">
+            <input type="email" name="email" placeholder="Email"> -->
+            <button class="btn btn-modal">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="edit-modal modal-wrapper">
+      <div class="modal">
+        <div class="modal-header"><h3>Edit User</h3></div>
+        <div class="modal-body">
+          <form class="form" autocomplete="off">
+            <input type="number" name="ProductID" placeholder="Product ID">
+            <input type="text" name="ProductName" placeholder="Product Name">
+            <input type="text" name="CategoryName" placeholder="Category Name">
+            <input type="number" name="CategoryID" placeholder="Category ID">
+            <!-- <input type="number" name="phone" placeholder="Phone">
+            <input type="email" name="email" placeholder="Email"> -->
+            <button class="btn btn-modal">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="pagination">
+    <a href="#">&laquo;</a>
+    <a class="active" href="#">1</a>
+    <a  href="./home.html">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+  </div>
+
+  
+          
+       <!-- The core Firebase JS SDK is always required and must be listed first -->
+       <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+
+       <!-- TODO: Add SDKs for Firebase products that you want to use
+           https://firebase.google.com/docs/web/setup#available-libraries -->
+       <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+     
+       <script>
+         // Your web app's Firebase configuration
+         var firebaseConfig = {
+         apiKey: "*********************************",
+         authDomain: "*********************************",
+         databaseURL: "*********************************",
+         projectId: "*********************************",
+         storageBucket: "*********************************",
+         messagingSenderId: "*********************************",
+         appId: "*********************************",
+         measurementId: "*********************************"
+       };
+         // Initialize Firebase
+         firebase.initializeApp(firebaseConfig);
+         const db = firebase.firestore();
+       </script>
+     
+
+
+  <script src="./script.js"></script>
+  <script src="./script2.js"></script>
+  <script src="./fsmodule.js"></script>
+</body>
+</html>

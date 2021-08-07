@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    
+</head>
+<body>
+  <div class="container">
+    <header>
+      <input type="text" id="myInput" placeholder="Search Product Category here" onkeyup="searchFun()">
+
+
+      <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#All" onclick="category()">ALL</a>
+          <a href="./home.html">home</a>
+          <a href="#Mobiles">Mobiles</a>
+          <a href="#games">games</a>
+          <a href="#Desktops">Desktops</a>
+          <a href="#laptop">laptops</a>
+        </div>
+      
+
+    </div>
+  </div>
+    <div class="table-wrapper container ">
+        <table class="table-users table" id="myTable" >
+          <!-- <tr> -->
+            <thead>
+            <th> ProductID</th>
+            <th>ProductName</th>
+            <th>CategoryName</th>
+            <th>CategoryID</th>
+          </thead>
+            <!-- <th>Phone</th>
+            <th>Email</th> -->
+            <!-- <th>Action</th> -->
+            <tbody id="tbody1">
+            <!-- <tr>
+                <td>102</td>
+                <td>lenovo Thinkpad</td>
+                <td>laptop</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>108</td>
+                <td>asus rog</td>
+                <td>laptop</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>109</td>
+                <td>Dell </td>
+                <td>laptop</td>
+                <td>6</td>
+              </tr> -->
+          <!-- </tr> -->
+        </tbody>
+        </table>
+
+    
+        
+      </div>
+
+      <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a  href="#">1</a>
+        <a class="active" href="./home.html">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
+      </div>
+    
+
+              
+       <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+    apiKey: "*********************************",
+    authDomain: "************************************",
+    databaseURL: "***********************************",
+    projectId: "*****************************",
+    storageBucket: "**************************",
+    messagingSenderId: "*************************",
+    appId: "************************",
+    measurementId: "*******************"
+  };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+<script>
+
+
+
+
+  // Real time listener
+db.collection('users').onSnapshot(snapshot => {
+  snapshot.docChanges().forEach(change => {
+    if(change.type === 'added') {
+      renderUser(change.doc);
+    }
+    if(change.type === 'removed') {
+      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+      let tbody = tr.parentElement;
+      tableUsers.removeChild(tbody);
+    }
+    if(change.type === 'modified') {
+      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+      let tbody = tr.parentElement;
+      tableUsers.removeChild(tbody);
+      renderUser(change.doc);
+    }
+  })
+})
+  
+  
+  </script>
+
+
+      <script src="script.js"></script>
+      <script src="./script2.js"></script>
+</body>
+</html>
